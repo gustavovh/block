@@ -11,7 +11,7 @@ import { AppIcon } from "@/components/AppIcon";
 export default function LoginScreen() {
   const colors = useColors();
   const router = useRouter();
-  const [email, setEmail] = useState("alejandro@gym.local");
+  const [email, setEmail] = useState("alejandro@blockfit.local");
   const [password, setPassword] = useState("atleta123");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -47,7 +47,7 @@ export default function LoginScreen() {
             style={styles.mainLogo} 
             resizeMode="contain" 
           />
-          <Text style={[styles.subtitle, { color: colors.mutedForeground, marginTop: 10 }]}>SAGA GYM</Text>
+          <Text style={[styles.subtitle, { color: colors.mutedForeground, marginTop: 10 }]}>BLOCK</Text>
         </Animated.View>
 
         <Animated.View entering={FadeInDown.delay(200).duration(600)} style={styles.form}>

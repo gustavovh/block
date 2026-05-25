@@ -1,7 +1,7 @@
-# System Overview - Gym Saga Admin Dashboard
+# System Overview - Block Fit Admin Dashboard
 
 ## 🎯 Mission
-Build a professional, enterprise-grade Admin Dashboard + Control Panel system for managing the Gym Saga mobile/web application.
+Build a professional, enterprise-grade Admin Dashboard + Control Panel system for managing the Block Fit mobile/web application.
 
 ## ✅ Current Status: 60% Complete
 - **Backend**: 100% Complete ✅

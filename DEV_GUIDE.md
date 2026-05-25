@@ -61,7 +61,7 @@ El dashboard estará disponible en `http://localhost:3000` (o 3002 si localhost:
 ### 5. Login al Dashboard
 
 Credenciales de prueba:
-- Email: `admin@gym-saga.local`
+- Email: `admin@blockfit.local`
 - Password: `Admin@123456`
 
 ## 📁 Estructura de Directorios Explicada
@@ -202,7 +202,7 @@ Los tokens JWT contienen:
 ```json
 {
   "sub": "user-id-uuid",
-  "email": "admin@gym-saga.local",
+  "email": "admin@blockfit.local",
   "role": "super_admin",
   "permissions": ["view_dashboard", "create_release", ...],
   "iat": 1234567890,
@@ -344,12 +344,12 @@ pnpm build
 
 ```bash
 # Build images
-docker build -f artifacts/api-server/Dockerfile -t gym-saga-api .
-docker build -f artifacts/admin-dashboard/Dockerfile -t gym-saga-admin .
+docker build -f artifacts/api-server/Dockerfile -t blockfit-api .
+docker build -f artifacts/admin-dashboard/Dockerfile -t blockfit-admin .
 
 # Run containers
-docker run -p 3001:3001 gym-saga-api
-docker run -p 3000:3000 gym-saga-admin
+docker run -p 3001:3001 blockfit-api
+docker run -p 3000:3000 blockfit-admin
 ```
 
 ## 📚 Referencias Útiles

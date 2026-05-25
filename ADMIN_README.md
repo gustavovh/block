@@ -1,8 +1,8 @@
-# Gym Saga - Admin Dashboard & Control Panel System
+# Block Fit - Admin Dashboard & Control Panel System
 
 ## 🎯 Visión General
 
-Sistema profesional de administración para Gym Saga que incluye:
+Sistema profesional de administración para Block Fit que incluye:
 
 - 📊 **Dashboard Principal** - KPIs y estadísticas en tiempo real
 - 🚀 **Sistema de Versionado** - Gestión de releases y actualizaciones
@@ -70,7 +70,7 @@ Sistema profesional de administración para Gym Saga que incluye:
 
 1. **Clonar repositorio**
 ```bash
-cd Gym-Saga-Design
+cd blockfit
 ```
 
 2. **Configurar variables de entorno**
@@ -80,7 +80,7 @@ cp .env.example .env.local
 
 Editar `.env.local` con tus valores:
 ```env
-DATABASE_URL="postgresql://postgres:postgres@localhost:5432/gym_saga"
+DATABASE_URL="postgresql://postgres:postgres@localhost:5432/blockfit"
 JWT_SECRET="your_very_secret_key_at_least_32_characters"
 NEXT_PUBLIC_API_URL="http://localhost:3001"
 ```
@@ -227,7 +227,7 @@ lib/
 Para desarrollo local:
 
 ```
-Email: admin@gym-saga.local
+Email: admin@blockfit.local
 Password: Admin@123456
 Role: super_admin
 ```
@@ -348,7 +348,7 @@ MIT
 
 ## 📞 Soporte
 
-Para soporte técnico: support@gym-saga.local
+Para soporte técnico: support@blockfit.local
 
 ---
 
@@ -391,4 +391,4 @@ Para soporte técnico: support@gym-saga.local
 
 ---
 
-**Construido con ❤️ para Gym Saga**
+**Construido con ❤️ para Block Fit**

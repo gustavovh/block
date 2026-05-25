@@ -99,7 +99,7 @@ pnpm dev
 
 ### 3. Access Admin Panel
 - URL: http://localhost:3000
-- Demo Email: admin@gym-saga.local
+- Demo Email: admin@blockfit.local
 - Demo Password: Admin@123456
 
 ## Testing the API
@@ -109,7 +109,7 @@ pnpm dev
 curl -X POST http://localhost:3001/api/admin/auth/login \
   -H "Content-Type: application/json" \
   -d '{
-    "email": "admin@gym-saga.local",
+    "email": "admin@blockfit.local",
     "password": "Admin@123456"
   }'
 ```

@@ -1,4 +1,4 @@
-# Quick Start Guide - Gym Saga Admin System
+# Quick Start Guide - Block Fit Admin System
 
 ## Prerequisites
 - Docker & Docker Compose installed
@@ -11,7 +11,7 @@
 
 ### Start All Services
 ```bash
-cd Gym-Saga-Design
+cd blockfit
 
 # Start database, cache, and storage
 docker-compose up -d
@@ -54,7 +54,7 @@ pnpm install
 # Copy environment variables
 cp ../../.env.example .env.local
 
-# Update DATABASE_URL if needed (default: postgresql://postgres:postgres@localhost:5432/gym_saga_admin)
+# Update DATABASE_URL if needed (default: postgresql://postgres:postgres@localhost:5432/blockfit_admin)
 
 # Run migrations (if any)
 pnpm run db:migrate
@@ -87,7 +87,7 @@ pnpm dev
 
 ### 3. Access Admin Panel
 - URL: **http://localhost:3000**
-- Email: **admin@gym-saga.local**
+- Email: **admin@blockfit.local**
 - Password: **Admin@123456**
 
 ---
@@ -114,7 +114,7 @@ Expected response:
 ### Frontend Login Test
 1. Navigate to http://localhost:3000
 2. Enter credentials:
-   - Email: `admin@gym-saga.local`
+   - Email: `admin@blockfit.local`
    - Password: `Admin@123456`
 3. You should see the dashboard
 
@@ -127,7 +127,7 @@ Expected response:
 RESPONSE=$(curl -s -X POST http://localhost:3001/api/admin/auth/login \
   -H "Content-Type: application/json" \
   -d '{
-    "email": "admin@gym-saga.local",
+    "email": "admin@blockfit.local",
     "password": "Admin@123456"
   }')
 
@@ -223,7 +223,7 @@ pnpm dev --open
 ## Project Structure
 
 ```
-Gym-Saga-Design/
+blockfit/
 ├── artifacts/
 │   ├── admin-dashboard/        # Next.js frontend app
 │   │   ├── src/
@@ -344,7 +344,7 @@ Essential `.env.local` variables:
 
 ```env
 # Backend
-DATABASE_URL=postgresql://postgres:postgres@localhost:5432/gym_saga_admin
+DATABASE_URL=postgresql://postgres:postgres@localhost:5432/blockfit_admin
 JWT_SECRET=your-secret-key-at-least-32-characters-long
 ADMIN_API_URL=http://localhost:3001
 
@@ -399,7 +399,7 @@ CORS_ORIGIN=http://localhost:3000
    - See TESTING_GUIDE.md for detailed API examples
 
 4. Check database:
-   - `psql -h localhost -U postgres -d gym_saga_admin`
+   - `psql -h localhost -U postgres -d blockfit_admin`
    - `\dt` to list tables
 
 5. Review documentation:
@@ -413,7 +413,7 @@ CORS_ORIGIN=http://localhost:3000
 ### PowerShell (Windows)
 ```powershell
 # Step 1 - Start Docker services
-Set-Location "Gym-Saga-Design"
+Set-Location "blockfit"
 docker-compose up -d
 
 # Step 2 - Start backend (in a new terminal)
@@ -427,14 +427,14 @@ pnpm dev
 
 ### Bash/Linux/Mac
 ```bash
-cd Gym-Saga-Design
+cd blockfit
 docker-compose up -d
 cd artifacts/api-server && pnpm dev &
 cd ../../artifacts/admin-dashboard && pnpm dev
 ```
 
 Navigate to http://localhost:3000 and login with:
-- Email: `admin@gym-saga.local`
+- Email: `admin@blockfit.local`
 - Password: `Admin@123456`
 
 Enjoy! 💪

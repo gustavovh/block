@@ -2,7 +2,7 @@
 
 ## Visión General
 
-Sistema SaaS Console completo para administración, versionado, empaquetado y despliegue de la aplicación Gym Saga.
+Sistema SaaS Console completo para administración, versionado, empaquetado y despliegue de la aplicación Block Fit.
 
 ## Estructura del Proyecto
 
@@ -285,7 +285,7 @@ sessions
 
 ```bash
 # Database
-DATABASE_URL=postgresql://user:pass@localhost:5432/gym_saga_admin
+DATABASE_URL=postgresql://user:pass@localhost:5432/blockfit_admin
 
 # Auth
 JWT_SECRET=<super_secret_key>
@@ -307,10 +307,10 @@ BUILD_WORKER_CONCURRENCY=2
 S3_ENDPOINT=http://localhost:9000
 S3_ACCESS_KEY=minioadmin
 S3_SECRET_KEY=minioadmin
-S3_BUCKET=gym-saga-builds
+S3_BUCKET=blockfit-builds
 
 # Seguridad
-CORS_ORIGIN=http://localhost:3000,https://admin.gym-saga.com
+CORS_ORIGIN=http://localhost:3000,https://admin.blockfit.com
 RATE_LIMIT_WINDOW=15m
 RATE_LIMIT_MAX_REQUESTS=100
 ```

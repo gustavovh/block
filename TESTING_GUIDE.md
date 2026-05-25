@@ -5,14 +5,14 @@
 ### 1. Prerequisites
 - Backend running on `http://localhost:3001`
 - PostgreSQL running on `localhost:5432`
-- Admin user seeded (email: `admin@gym-saga.local`, password: `Admin@123456`)
+- Admin user seeded (email: `admin@blockfit.local`, password: `Admin@123456`)
 
 ### 2. Get Access Token
 ```bash
 RESPONSE=$(curl -X POST http://localhost:3001/api/admin/auth/login \
   -H "Content-Type: application/json" \
   -d '{
-    "email": "admin@gym-saga.local",
+    "email": "admin@blockfit.local",
     "password": "Admin@123456"
   }')
 
@@ -36,7 +36,7 @@ export ADMIN_TOKEN="your_token_here"
 curl -X POST http://localhost:3001/api/admin/auth/login \
   -H "Content-Type: application/json" \
   -d '{
-    "email": "admin@gym-saga.local",
+    "email": "admin@blockfit.local",
     "password": "Admin@123456"
   }'
 ```
@@ -51,7 +51,7 @@ curl -X POST http://localhost:3001/api/admin/auth/login \
     "expires_in": 900,
     "user": {
       "id": "uuid",
-      "email": "admin@gym-saga.local",
+      "email": "admin@blockfit.local",
       "name": "Admin",
       "role": "super_admin",
       "status": "active"
@@ -226,7 +226,7 @@ curl -X PUT http://localhost:3001/api/admin/remote-config/api_endpoint \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer $ADMIN_TOKEN" \
   -d '{
-    "value": "https://api.gym-saga.local/v2",
+    "value": "https://api.blockfit.local/v2",
     "version_min": "1.0.0"
   }'
 ```
@@ -247,7 +247,7 @@ curl -X POST http://localhost:3001/api/admin/users \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer $ADMIN_TOKEN" \
   -d '{
-    "email": "newadmin@gym-saga.local",
+    "email": "newadmin@blockfit.local",
     "name": "New Admin",
     "role": "admin",
     "password": "SecurePassword123456"
@@ -361,7 +361,7 @@ get-admin-token() {
   curl -s -X POST http://localhost:3001/api/admin/auth/login \
     -H "Content-Type: application/json" \
     -d '{
-      "email": "admin@gym-saga.local",
+      "email": "admin@blockfit.local",
       "password": "Admin@123456"
     }' | jq -r '.data.access_token'
 }
@@ -403,7 +403,7 @@ Import this into Postman for easier testing:
 ```json
 {
   "info": {
-    "name": "Gym Saga Admin API",
+    "name": "Block Fit Admin API",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
   "item": [
@@ -417,7 +417,7 @@ Import this into Postman for easier testing:
             "url": "http://localhost:3001/api/admin/auth/login",
             "body": {
               "mode": "raw",
-              "raw": "{\"email\": \"admin@gym-saga.local\", \"password\": \"Admin@123456\"}"
+              "raw": "{\"email\": \"admin@blockfit.local\", \"password\": \"Admin@123456\"}"
             }
           }
         }
@@ -458,7 +458,7 @@ Import this into Postman for easier testing:
 
 ### Connection Refused
 - Verify backend is running on port 3001
-- Check database connection: `psql -h localhost -U postgres -d gym_saga_admin`
+- Check database connection: `psql -h localhost -U postgres -d blockfit_admin`
 - Check Redis is running: `redis-cli ping`
 
 ### Database Errors
