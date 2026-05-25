@@ -4,6 +4,7 @@
   "license": "MIT",
   "scripts": {
     "build": "pnpm --filter @workspace/admin-dashboard run build && node scripts/copy-build.cjs",
+    "build:app": "pnpm --filter @workspace/blockfit run build:web && node -e \"const fs=require('fs'); if(fs.existsSync('dist')) fs.rmSync('dist', {recursive:true, force:true}); fs.cpSync('artifacts/blockfit-app/dist', 'dist', {recursive:true});\"",
     "typecheck:libs": "tsc --build",
     "typecheck": "pnpm run typecheck:libs && pnpm -r --filter \"./artifacts/**\" --filter \"./scripts\" --if-present run typecheck"
   },
