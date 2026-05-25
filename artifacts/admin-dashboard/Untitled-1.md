@@ -1,0 +1,1 @@
+EXPO_PUBLIC_API_URL=https://dharma-fit.onrender.com

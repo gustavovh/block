@@ -1,0 +1,47 @@
+{
+  "expo": {
+    "name": "BLOCK",
+    "slug": "blockfit",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/images/logo.png",
+    "scheme": "blockfit",
+    "userInterfaceStyle": "dark",
+    "newArchEnabled": true,
+    "splash": {
+      "image": "./assets/images/logo.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#0A0A0A"
+    },
+    "ios": {
+      "supportsTablet": false
+    },
+    "android": {
+      "package": "com.blockfit.app",
+      "versionCode": 1
+    },
+    "web": {
+      "favicon": "./assets/images/logo.png",
+      "bundler": "metro"
+    },
+    "plugins": [
+      [
+        "expo-router",
+        {
+          "origin": "https://blockfit.netlify.app/"
+        }
+      ],
+      "expo-font",
+      "expo-web-browser"
+    ],
+    "experiments": {
+      "typedRoutes": true,
+      "reactCompiler": true
+    },
+    "extra": {
+      "eas": {
+        "projectId": "d8a0d87b-6a2e-4ff1-be57-c41f839a5acf"
+      }
+    }
+  }
+}

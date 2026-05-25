@@ -1,0 +1,123 @@
+version: '3.9'
+
+services:
+  # PostgreSQL Database
+  postgres:
+    image: postgres:16-alpine
+    container_name: blockfit-db
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-postgres}
+      POSTGRES_DB: ${POSTGRES_DB:-blockfit}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5433:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - blockfit-network
+
+  # Redis for caching and queues
+  redis:
+    image: redis:7-alpine
+    container_name: blockfit-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - blockfit-network
+
+  # MinIO for S3-compatible storage
+  minio:
+    image: minio/minio:latest
+    container_name: blockfit-minio
+    environment:
+      MINIO_ROOT_USER: ${S3_ACCESS_KEY:-minioadmin}
+      MINIO_ROOT_PASSWORD: ${S3_SECRET_KEY:-minioadmin}
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    volumes:
+      - minio_data:/minio_root
+    command: server /minio_root --console-address ":9001"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9000/minio/health/live"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - blockfit-network
+
+  # API Server
+  api-server:
+    build:
+      context: .
+      dockerfile: artifacts/api-server/Dockerfile
+    container_name: blockfit-api
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    environment:
+      PORT: ${PORT:-3001}
+      NODE_ENV: ${NODE_ENV:-development}
+      DATABASE_URL: postgresql://${POSTGRES_USER:-postgres}:${POSTGRES_PASSWORD:-postgres}@postgres:5432/${POSTGRES_DB:-blockfit}
+      REDIS_URL: redis://redis:6379
+      JWT_SECRET: ${JWT_SECRET:-dev_secret_key_change_in_production}
+      JWT_EXPIRY: ${JWT_EXPIRY:-15m}
+      REFRESH_TOKEN_EXPIRY: ${REFRESH_TOKEN_EXPIRY:-7d}
+      CORS_ORIGIN: ${CORS_ORIGIN:-http://localhost:3000,http://localhost:3001,http://localhost:3002}
+      S3_ENDPOINT: http://minio:9000
+      S3_ACCESS_KEY: ${S3_ACCESS_KEY:-minioadmin}
+      S3_SECRET_KEY: ${S3_SECRET_KEY:-minioadmin}
+      S3_BUCKET: ${S3_BUCKET:-blockfit-builds}
+      LOG_LEVEL: ${LOG_LEVEL:-info}
+    ports:
+      - "3001:3001"
+    volumes:
+      - ./artifacts/api-server/src:/app/artifacts/api-server/src
+    networks:
+      - blockfit-network
+    profiles:
+      - full
+
+  # Admin Dashboard (Next.js)
+  admin-dashboard:
+    build:
+      context: .
+      dockerfile: artifacts/admin-dashboard/Dockerfile
+    container_name: blockfit-admin
+    depends_on:
+      - api-server
+    environment:
+      BACKEND_API_URL: ${BACKEND_API_URL:-http://api-server:3001}
+      NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL:-http://localhost:3001}
+      NODE_ENV: ${NODE_ENV:-development}
+    ports:
+      - "3002:3000"
+    volumes:
+      - ./artifacts/admin-dashboard/src:/app/artifacts/admin-dashboard/src
+    networks:
+      - blockfit-network
+    profiles:
+      - full
+
+volumes:
+  postgres_data:
+  redis_data:
+  minio_data:
+
+networks:
+  blockfit-network:
+    driver: bridge

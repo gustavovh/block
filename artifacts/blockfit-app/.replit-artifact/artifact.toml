@@ -1,0 +1,26 @@
+kind = "mobile"
+previewPath = "/"
+title = "blockfit"
+version = "1.0.0"
+id = "artifacts/blockfit"
+router = "expo-domain"
+
+[[integratedSkills]]
+name = "expo"
+version = "1.0.0"
+
+[[services]]
+ensurePreviewReachable = "/status"
+name = "expo"
+paths = [ "/" ]
+localPort = 20332
+
+[services.development]
+run = "pnpm --filter @workspace/blockfit run dev"
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/blockfit", "run", "build" ]
+run = [ "pnpm", "--filter", "@workspace/blockfit", "run", "serve" ]
+
+[services.env]
+PORT = "20332"
+BASE_PATH = "/"

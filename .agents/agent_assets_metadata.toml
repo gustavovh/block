@@ -1,0 +1,8 @@
+uploads = []
+outputs = []
+
+[[generated]]
+id = "kTR8yd9S48LV6d2cyE76C"
+uri = "file://artifacts/profeandres/assets/images/icon.png"
+type = "image"
+title = "profeandres icon"

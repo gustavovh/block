@@ -1,0 +1,40 @@
+services:
+  - type: web
+    name: blockfit-api
+    env: docker
+    dockerfilePath: artifacts/api-server/Dockerfile
+    autoDeploy: true
+    healthCheckPath: /api/healthz
+    envVars:
+      - key: PORT
+        value: "3001"
+      - key: NODE_ENV
+        value: production
+      - key: DATABASE_URL
+        value: ""
+      - key: JWT_SECRET
+        value: ""
+      - key: JWT_EXPIRY
+        value: "15m"
+      - key: REFRESH_TOKEN_EXPIRY
+        value: "7d"
+      - key: CORS_ORIGIN
+        value: ""
+
+  - type: web
+    name: blockfit-admin-dashboard
+    env: docker
+    dockerfilePath: artifacts/admin-dashboard/Dockerfile
+    autoDeploy: true
+    healthCheckPath: /
+    envVars:
+      - key: PORT
+        value: "3000"
+      - key: NODE_ENV
+        value: production
+      - key: BACKEND_API_URL
+        value: "https://blockfit-api.onrender.com"
+      - key: NEXT_PUBLIC_API_URL
+        value: "https://blockfit-api.onrender.com"
+
+         
