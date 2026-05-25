@@ -4,6 +4,8 @@ const path = require('path');
 const src = path.join(__dirname, '../artifacts/admin-dashboard/out');
 const destOut = path.join(__dirname, '../out');
 const destDist = path.join(__dirname, '../dist');
+const destSandboxDist = path.join(__dirname, '../artifacts/mockup-sandbox/dist');
+const destSandboxOut = path.join(__dirname, '../artifacts/mockup-sandbox/out');
 
 function copyRecursiveSync(srcDir, destDir) {
   if (fs.existsSync(destDir)) {
@@ -25,10 +27,12 @@ function copyRecursiveSync(srcDir, destDir) {
 }
 
 if (fs.existsSync(src)) {
-  console.log(`Copying build from ${src} to root-level out and dist...`);
+  console.log(`Copying build from ${src} to root and sandbox directories...`);
   copyRecursiveSync(src, destOut);
   copyRecursiveSync(src, destDist);
-  console.log('✅ Build files copied successfully to root directories.');
+  copyRecursiveSync(src, destSandboxDist);
+  copyRecursiveSync(src, destSandboxOut);
+  console.log('✅ Build files copied successfully to all target directories.');
 } else {
   console.error(`❌ Source directory ${src} does not exist! Make sure to run next build first.`);
   process.exit(1);
