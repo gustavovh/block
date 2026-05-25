@@ -1,5 +1,5 @@
 [build]
-  command = "pnpm build:web"
+  command = "pnpm --filter @workspace/blockfit run build:web"
   publish = "dist"
 
 [[headers]]
