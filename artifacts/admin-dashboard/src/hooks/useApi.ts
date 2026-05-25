@@ -58,7 +58,7 @@ export function useFetch<T>(url: string) {
           // Token expirado
           localStorage.removeItem("access_token");
           localStorage.removeItem("refresh_token");
-          window.location.href = "/auth/login";
+          window.location.href = "/auth/login/";
           return null;
         }
 

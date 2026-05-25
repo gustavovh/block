@@ -18,7 +18,7 @@ export function ProtectedRoute({ children }: { children: React.ReactNode }) {
 
     // Si no hay token y no estamos en login, redirigir
     if (!token && !localStorage.getItem("access_token") && !pathname.includes("/auth")) {
-      router.push("/auth/login");
+      router.push("/auth/login/");
     }
   }, [token, pathname, router, hydrateFromStorage]);
 

@@ -45,7 +45,7 @@ export function DashboardLayout({
     // Auth guard
     const storedToken = localStorage.getItem("access_token");
     if (!storedToken) {
-      window.location.href = "/auth/login";
+      window.location.href = "/auth/login/";
     }
   }, [hydrateFromStorage]);
 
@@ -56,7 +56,7 @@ export function DashboardLayout({
   const handleLogout = () => {
     localStorage.removeItem("access_token");
     localStorage.removeItem("refresh_token");
-    window.location.href = "/auth/login";
+    window.location.href = "/auth/login/";
   };
 
   return (
