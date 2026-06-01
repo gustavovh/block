@@ -1,6 +1,6 @@
 [build]
   command = "pnpm --filter @workspace/blockfit run build:web"
-  publish = "dist"
+  publish = "artifacts/blockfit-app/dist"
 
 [[headers]]
   for = "/*.ttf"
